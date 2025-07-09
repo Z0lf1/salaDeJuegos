@@ -1,0 +1,36 @@
+<nav class="navbar navbar-expand-lg navbar-dark bg-dark">
+    <div class="container-fluid">
+      <a class="navbar-brand" routerLink="/home">Sala de juegos</a>
+      <button
+        class="navbar-toggler"
+        type="button"
+        data-bs-toggle="collapse"
+        data-bs-target="#navbarNav"
+      >
+        <span class="navbar-toggler-icon"></span>
+      </button>
+      <div class="collapse navbar-collapse" id="navbarNav">
+        <ul class="navbar-nav ms-auto">
+          <li class="nav-item" ngIf="!userEmail">
+            <a class="nav-link" routerLink="/home/login">Login</a>
+          </li>
+          <li class="nav-item"ngIf="userEmail">
+            <span class="nav-link disabled">{{ userEmail }}</span>
+          </li>
+          <li class="nav-item" ngIf="userEmail">
+            <button class="btn btn-link nav-link" (click)="logout()">Logout</button>
+          </li>
+          <li class="nav-item">
+            <a class="nav-link" routerLink="/home/quien-soy">¿Quién soy?</a>
+          </li>
+          <li class="nav-item"ngIf="userEmail">
+            <a class="nav-link" routerLink="/home/chat">Chat</a>
+          </li>
+        </ul>
+      </div>
+    </div>
+  </nav>
+  
+  <div class="container mt-4">
+    <router-outlet></router-outlet>
+  </div>
