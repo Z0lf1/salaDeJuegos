@@ -1,0 +1,43 @@
+<div class="row">
+    <div class="col text-center">
+        <h3>Intentos <small> {{ intentos }} / 6</small></h3>
+    </div>
+</div>
+
+<div class="row">
+    <div class="col text-center">
+        <h1>{{palabraOculta}}</h1>
+    </div>
+</div>
+
+<div *ngIf="gano" class="row">
+    <div class="col text-center">
+        <h1> ¡FELICIDADES HAS GANADO! </h1>
+        <h4> 🙂 </h4>
+    </div>
+</div>
+
+<div *ngIf="perdio" class="row">
+    <div class="col text-center">
+        <h1> HAS PERDIDO 😦 </h1>
+        <h4> palabra: {{ palabra }} </h4>
+    </div>
+</div>
+
+<div class="row">
+    <div class="col text-center">
+        <img [src]="imagenes[intentos]" alt="Ahorcado" style="max-width: 250px; margin-bottom: 20px;">
+    </div>
+</div>
+
+<div class="row" *ngIf="!gano && !perdio">
+    <div class="col text-center">
+        <button
+            (click)="comprobar(letra)"
+            *ngFor="let letra of letras"
+            class="btn btn-dark"
+            [disabled]="letrasUsadas.has(letra)">
+            {{ letra }}
+        </button>
+    </div>
+</div>

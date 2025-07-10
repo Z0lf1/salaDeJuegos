@@ -1,7 +1,9 @@
 import { NgModule } from '@angular/core';
 import { RouterModule, Routes } from '@angular/router';
-
-const routes: Routes = [];
+import { AhorcadoComponent } from './ahorcado/ahorcado.component';
+const routes: Routes = [
+  { path: 'ahorcado', component: AhorcadoComponent }  // ...otros juegos
+];
 
 @NgModule({
   imports: [RouterModule.forChild(routes)],
