@@ -47,8 +47,34 @@ export class AuthService {
     if (error) {
       throw error;
     }
+
+    // Registrar el usuario en la tabla Usuarios con perfil "jugador"
+    const { error: insertError } = await this.supabase
+      .from('usuarios')
+      .insert([{ email, perfil: 'jugador' }]);
+
+    if (insertError) {
+      console.error('Error al insertar en la tabla Usuarios:', insertError);
+      throw insertError;
+    }
+
     // Inicia sesión automáticamente después de registrarse
     await this.login(email, password);
+    return data;
+  }
+
+  async getUsuarioPorEmail(email: string): Promise<any> {
+    const { data, error } = await this.supabase
+      .from('usuarios')
+      .select('*')
+      .eq('email', email)
+      .single(); // Obtiene un único registro
+
+    if (error) {
+      console.error('Error al obtener usuario por email:', error);
+      throw error;
+    }
+
     return data;
   }
 }

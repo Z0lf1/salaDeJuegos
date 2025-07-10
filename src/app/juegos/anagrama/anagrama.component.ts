@@ -1,15 +1,16 @@
-import { Component } from '@angular/core';
-import { CommonModule } from '@angular/common'; // Importa CommonModule para *ngIf
-import { FormsModule } from '@angular/forms'; // Importa FormsModule para [(ngModel)]
+import { Component, OnInit } from '@angular/core';
+import { CommonModule } from '@angular/common';
+import { FormsModule } from '@angular/forms';
+import { PuntajesService } from '../../services/puntajes.service';
 
 @Component({
   selector: 'app-anagrama',
   templateUrl: './anagrama.component.html',
   styleUrls: ['./anagrama.component.css'],
-  standalone: true, // Indica que es un componente independiente
-  imports: [CommonModule, FormsModule] // Agrega CommonModule y FormsModule aquí
+  standalone: true,
+  imports: [CommonModule, FormsModule]
 })
-export class AnagramaComponent {
+export class AnagramaComponent implements OnInit {
   palabras: string[] = ['ANGULAR', 'JUEGO', 'COMPONENTE', 'SERVICIO', 'TYPESCRIPT', 'MODULO', 'PROYECTO', 'VARIABLE'];
   palabraOriginal: string = '';
   anagrama: string = '';
@@ -19,9 +20,23 @@ export class AnagramaComponent {
   vidas: number = 3;
   feedback: string = '';
   esperando: boolean = false;
+  usuario: string = ''; // Usuario logueado
+  puntajes: any[] = []; // Puntajes del juego
 
-  ngOnInit() {
+  constructor(private puntajesService: PuntajesService) {}
+
+  async ngOnInit() {
+    this.usuario = localStorage.getItem('userEmail') || 'Invitado'; // Obtener usuario logueado
+    await this.cargarPuntajes();
     this.nuevaRonda();
+  }
+
+  async cargarPuntajes() {
+    try {
+      this.puntajes = await this.puntajesService.obtenerPuntajesPorJuego('Anagrama');
+    } catch (error) {
+      console.error('Error al cargar puntajes:', error);
+    }
   }
 
   nuevaRonda() {
@@ -52,7 +67,7 @@ export class AnagramaComponent {
     return arr.join('');
   }
 
-  responder(opcion: string) {
+  async responder(opcion: string) {
     if (this.esperando || this.vidas === 0) return;
     this.esperando = true;
     if (opcion === this.correcta) {
@@ -62,11 +77,23 @@ export class AnagramaComponent {
       this.vidas--;
       this.feedback = 'Incorrecto';
     }
-    setTimeout(() => {
+    setTimeout(async () => {
       if (this.vidas > 0) {
         this.nuevaRonda();
+      } else {
+        await this.guardarPuntaje(); // Guardar puntaje al finalizar el juego
+        await this.cargarPuntajes(); // Recargar puntajes
       }
       this.esperando = false;
     }, 1200);
+  }
+
+  async guardarPuntaje() {
+    try {
+      const puntosString = this.puntos.toString(); // Convertir puntos a string
+      await this.puntajesService.guardarPuntaje(this.usuario, puntosString, 'Anagrama');
+    } catch (error) {
+      console.error('Error al guardar puntaje:', error);
+    }
   }
 }

@@ -25,4 +25,23 @@
       ¡Juego terminado!
     </div>
   </div>
-  
+
+  <div class="mt-5">
+    <h3>Puntajes del juego</h3>
+    <table class="table table-striped">
+      <thead>
+        <tr>
+          <th>Usuario</th>
+          <th>Puntaje</th>
+          <th>Fecha</th>
+        </tr>
+      </thead>
+      <tbody>
+        <tr *ngFor="let puntaje of puntajes">
+          <td>{{ puntaje.usuario }}</td>
+          <td>{{ puntaje.puntaje }}</td>
+          <td>{{ puntaje.created_at | date:'short' }}</td>
+        </tr>
+      </tbody>
+    </table>
+  </div>
