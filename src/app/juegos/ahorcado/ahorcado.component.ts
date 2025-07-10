@@ -1,9 +1,10 @@
 import { Component } from '@angular/core';
-
+import { CommonModule } from '@angular/common';
 @Component({
   selector: 'app-ahorcado',
   templateUrl: './ahorcado.component.html',
-  styleUrls: ['./ahorcado.component.css']
+  styleUrls: ['./ahorcado.component.css'],
+  imports: [CommonModule]
 })
 export class AhorcadoComponent {
   palabras:Array<string> = ['PARAGUAS', 'CAMARA', 'PERSONA',

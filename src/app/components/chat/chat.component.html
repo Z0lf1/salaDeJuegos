@@ -1,0 +1,31 @@
+<div class="container mt-4" style="max-width: 600px;">
+    <div class="card shadow">
+      <div class="card-header bg-dark text-white">
+        Chat
+      </div>
+      <div class="card-body" style="height: 300px; overflow-y: auto;">
+        <div *ngFor="let m of mensajes">
+          <span class="fw-bold">{{ m.usuario }}:</span>
+          <span>{{ m.mensaje }}</span>
+          <span class="text-muted small float-end">{{ m.created_at | date:'short' }}</span>
+          <hr class="my-2">
+        </div>
+        <div *ngIf="mensajes.length === 0" class="text-center text-muted">No hay mensajes</div>
+      </div>
+      <div class="card-footer">
+        <form (ngSubmit)="enviar()" class="row g-2 align-items-center">
+          <div class="col-4 d-flex align-items-center">
+            <span class="fw-bold">{{ usuario }}</span>
+          </div>
+          <div class="col-6">
+            <input type="text" class="form-control" placeholder="Mensaje" [(ngModel)]="mensaje" name="mensaje" required>
+          </div>
+          <div class="col-2">
+            <button type="submit" class="btn btn-dark w-100">Enviar</button>
+          </div>
+        </form>
+        <div *ngIf="error" class="text-danger mt-2">{{ error }}</div>
+      </div>
+    </div>
+  </div>
+  
