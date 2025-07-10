@@ -1,0 +1,39 @@
+/* Estilo general para las tarjetas de juegos */
+.card {
+    border-radius: 1rem;
+    overflow: hidden;
+    transition: transform 0.2s ease, box-shadow 0.2s ease;
+  }
+  
+  .card:hover {
+    transform: scale(1.03);
+    box-shadow: 0 8px 16px rgba(0, 0, 0, 0.15);
+  }
+  
+  /* Imagen del juego */
+  .game-pic {
+    max-width: 100%;
+    max-height: 150px;
+    object-fit: contain;
+  }
+  
+  /* Asegura que haya padding dentro del cuerpo de la tarjeta */
+  .card-body {
+    padding: 1rem;
+  }
+  
+  /* Opcional: cursor y borde cuando es clickeable */
+  .card-clickable {
+    cursor: pointer;
+    border: 1px solid #dee2e6;
+  }
+  
+  /* Responsive (opcional): mantener alineación centrada */
+  .card-title {
+    font-size: 1.1rem;
+    font-weight: 600;
+    margin-top: auto;
+    margin-bottom: 0;
+    text-align: center;
+  }
+  

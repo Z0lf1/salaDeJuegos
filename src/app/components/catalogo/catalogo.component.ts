@@ -14,22 +14,22 @@ export class CatalogoComponent {
     {
       nombre: 'Ahorcado',
       ruta: '/home/juegos/ahorcado',
-      imagen: 'assets/ahorcado0.png'
+      imagen: 'assets/ahorcado.png'
     },
     {
       nombre: 'Mayor o Menor',
       ruta: '/home/juegos/mayor-menor',
-      imagen: 'juegos-imgs/mayor-menor.png'
+      imagen: 'assets/mayor-menor.png'
     },
     {
       nombre: 'Preguntados',
       ruta: '/home/juegos/preguntados',
-      imagen: 'juegos-imgs/preguntados.png'
+      imagen: 'assets/preguntados.png'
     },
     {
       nombre: 'Anagrama',
       ruta: '/home/juegos/anagrama',
-      imagen: 'juegos-imgs/juego-propio.png'
+      imagen: 'assets/anagrama.png'
     }
   ];
 
