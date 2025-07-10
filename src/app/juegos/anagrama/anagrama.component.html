@@ -1,0 +1,28 @@
+<div class="text-center mt-4">
+    <h3 class="mb-4">¿Cuál es la palabra original del anagrama?</h3>
+    <div class="mb-2">
+      <span class="me-3">Puntos: <b>{{ puntos }}</b></span>
+      <span>Vidas:
+        <span *ngFor="let v of [].constructor(vidas)">❤️</span>
+      </span>
+    </div>
+    <div class="mb-3">
+      <span class="display-5 fw-bold">{{ anagrama }}</span>
+    </div>
+    <div class="d-grid gap-2 col-6 mx-auto">
+      <button
+        *ngFor="let opcion of opciones"
+        class="btn btn-dark mb-2 text-capitalize"
+        [disabled]="esperando || vidas === 0"
+        (click)="responder(opcion)">
+        {{ opcion }}
+      </button>
+    </div>
+    <div class="mt-3 h5" [ngClass]="{'text-success': feedback==='¡Correcto!', 'text-danger': feedback==='Incorrecto'}">
+      {{ feedback }}
+    </div>
+    <div *ngIf="vidas === 0" class="text-danger mt-3 h4">
+      ¡Juego terminado!
+    </div>
+  </div>
+  
