@@ -29,6 +29,9 @@
         <li class="nav-item" *ngIf="userEmail">
           <span class="nav-link disabled">{{ userEmail }}</span>
         </li>
+        <li class="nav-item" *ngIf="esAdmin">
+          <a class="nav-link" routerLink="/home/encuestas">Encuestas</a>
+        </li>
         <li class="nav-item" *ngIf="userEmail">
           <button class="btn btn-link nav-link" (click)="logout()">Logout</button>
         </li>

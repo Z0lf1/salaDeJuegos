@@ -77,4 +77,26 @@ export class AuthService {
 
     return data;
   }
+  async isAdmin(): Promise<boolean> {
+    const email = this.getUserEmail();
+    if (!email) return false;
+  
+    try {
+      const { data, error } = await this.supabase
+        .from('usuarios')
+        .select('perfil')
+        .eq('email', email)
+        .single();
+  
+      if (error) {
+        console.error('Error al verificar perfil de usuario:', error);
+        return false;
+      }
+  
+      return data.perfil === 'administrador';
+    } catch (err) {
+      console.error('Error inesperado al verificar administrador:', err);
+      return false;
+    }
+  }
 }

@@ -12,6 +12,7 @@ import { EncuestasService } from '../../services/encuestas.service';
 })
 export class EncuestaComponent implements OnInit {
   encuestaForm!: FormGroup;
+
   juegos=['Ahorcado', 'Mayor Menor', 'Preguntados', 'Anagrama'];
   constructor(private fb: FormBuilder, private encuestaService: EncuestasService) {}
 

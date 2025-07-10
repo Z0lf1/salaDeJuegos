@@ -12,14 +12,21 @@ import { CommonModule } from '@angular/common'; // Importa CommonModule
 })
 export class HomeComponent implements OnInit, OnDestroy {
   userEmail: string | null = null;
+  esAdmin:boolean = false;
   private sub: Subscription | undefined;
 
   constructor(public authService: AuthService, private router: Router) {}
 
   ngOnInit() {
-    this.sub = this.authService.userEmail$.subscribe(email => {
+    this.sub = this.authService.userEmail$.subscribe( async email => {
       this.userEmail = email;
+      if(email){
+        this.esAdmin = await this.authService.isAdmin();
+      }else{
+        this.esAdmin = false;
+      }
       console.log('Email del usuario:', this.userEmail);
+      
     });
   }
 

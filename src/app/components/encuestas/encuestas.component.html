@@ -1,1 +1,35 @@
-<p>encuestas works!</p>
+<div class="container mt-5">
+    <h2 class="mb-4 text-center">Encuestas Recibidas</h2>
+  
+    <div *ngIf="cargando" class="alert alert-info">Cargando encuestas...</div>
+    <div *ngIf="error" class="alert alert-danger">{{ error }}</div>
+  
+    <table *ngIf="!cargando && encuestas.length > 0" class="table table-bordered table-hover">
+      <thead class="table-dark">
+        <tr>
+          <th>Nombre y Apellido</th>
+          <th>Edad</th>
+          <th>Teléfono</th>
+          <th>Juego Favorito</th>
+          <th>Juego Faltante</th>
+          <th>Sugerencias</th>
+          <th>Fecha</th>
+        </tr>
+      </thead>
+      <tbody>
+        <tr *ngFor="let encuesta of encuestas">
+          <td>{{ encuesta.nombre_apellido }}</td>
+          <td>{{ encuesta.edad }}</td>
+          <td>{{ encuesta.telefono }}</td>
+          <td>{{ encuesta.juego_favorito }}</td>
+          <td>{{ encuesta.juego_faltante || '—' }}</td>
+          <td>{{ encuesta.sugerencias || '—' }}</td>
+          <td>{{ encuesta.fecha_creacion | date:'short' }}</td>
+        </tr>
+      </tbody>
+    </table>
+  
+    <div *ngIf="!cargando && encuestas.length === 0" class="alert alert-warning">
+      No hay encuestas registradas por el momento.
+    </div>
+  </div>
