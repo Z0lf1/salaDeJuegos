@@ -21,9 +21,9 @@ export const routes: Routes = [
       { path: 'login', component: LoginComponent },
       { path: 'registro', component: RegistroComponent },
       { path: 'juegos', loadChildren: () => import('./juegos/juegos.module').then(m => m.JuegosModule) }, 
-      { path: 'chat', component: ChatComponent , canActivate: [AuthGuard] } // Asegúrate de que AuthGuard esté importado y configurado,
-      { path: 'encuesta', component: EncuestaComponent , canActivate: [AuthGuard] } // Asegúrate de que AuthGuard esté importado y configurado,
-      { path: 'encuestas', component: EncuestasComponent , canActivate: [AdminGuard] } // Asegúrate de que AuthGuard esté importado y configurado,
+      { path: 'chat', component: ChatComponent , canActivate: [AuthGuard] }, // Asegúrate de que AuthGuard esté importado y configurado,
+      { path: 'encuesta', component: EncuestaComponent , canActivate: [AuthGuard] }, // Asegúrate de que AuthGuard esté importado y configurado
+      { path: 'encuestas', component: EncuestasComponent , canActivate: [AdminGuard] } // Asegúrate de que AuthGuard esté importado y configurado
 
    
     ]

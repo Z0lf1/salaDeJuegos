@@ -14,7 +14,7 @@ export class HomeComponent implements OnInit, OnDestroy {
   userEmail: string | null = null;
   private sub: Subscription | undefined;
 
-  constructor(private authService: AuthService, private router: Router) {}
+  constructor(public authService: AuthService, private router: Router) {}
 
   ngOnInit() {
     this.sub = this.authService.userEmail$.subscribe(email => {

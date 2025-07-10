@@ -1,1 +1,103 @@
-<p>encuesta works!</p>
+<div class="container mt-5">
+  <h2 class="text-center mb-4">Encuesta</h2>
+  <form [formGroup]="encuestaForm" (ngSubmit)="onSubmit()">
+    <!-- Nombre y Apellido -->
+    <div class="mb-3">
+      <label for="nombreApellido" class="form-label">Nombre y Apellido</label>
+      <input
+        id="nombreApellido"
+        type="text"
+        class="form-control"
+        formControlName="nombreApellido"
+        [ngClass]="{'is-invalid': encuestaForm.get('nombreApellido')?.invalid && encuestaForm.get('nombreApellido')?.touched}"
+      />
+      <div *ngIf="encuestaForm.get('nombreApellido')?.invalid && encuestaForm.get('nombreApellido')?.touched" class="invalid-feedback">
+        Nombre y apellido son obligatorios y solo pueden contener letras y espacios.
+      </div>
+    </div>
+
+    <!-- Edad -->
+    <div class="mb-3">
+      <label for="edad" class="form-label">Edad</label>
+      <input
+        id="edad"
+        type="number"
+        class="form-control"
+        formControlName="edad"
+        [ngClass]="{'is-invalid': encuestaForm.get('edad')?.invalid && encuestaForm.get('edad')?.touched}"
+      />
+      <div *ngIf="encuestaForm.get('edad')?.invalid && encuestaForm.get('edad')?.touched" class="invalid-feedback">
+        La edad debe estar entre 18 y 99 años.
+      </div>
+    </div>
+
+    <!-- Teléfono -->
+    <div class="mb-3">
+      <label for="telefono" class="form-label">Teléfono</label>
+      <input
+        id="telefono"
+        type="text"
+        class="form-control"
+        formControlName="telefono"
+        [ngClass]="{'is-invalid': encuestaForm.get('telefono')?.invalid && encuestaForm.get('telefono')?.touched}"
+      />
+      <div *ngIf="encuestaForm.get('telefono')?.invalid && encuestaForm.get('telefono')?.touched" class="invalid-feedback">
+        El teléfono debe contener solo números y no más de 10 caracteres.
+      </div>
+    </div>
+    <div class="mb-3">
+      <label for="juegoFaltante" class="form-label">¿Qué juego pensás que falta?</label>
+      <input
+        id="juegoFaltante"
+        type="text"
+        class="form-control"
+        formControlName="juegoFaltante"
+      />
+    </div>
+    <!-- Pregunta 1: ¿Qué juego te gustó más? -->
+    <div class="mb-3">
+      <label class="form-label">¿Qué juego te gustó más?</label>
+      <div *ngFor="let juego of juegos">
+        <div class="form-check">
+          <input
+            class="form-check-input"
+            type="radio"
+            [value]="juego"
+            formControlName="juegoFavorito"
+            [id]="juego"
+          />
+          <label class="form-check-label" [for]="juego">{{ juego }}</label>
+        </div>
+      </div>
+      <div *ngIf="encuestaForm.get('juegoFavorito')?.invalid && encuestaForm.get('juegoFavorito')?.touched" class="text-danger">
+        Seleccioná un juego.
+      </div>
+    </div>
+        <div class="mb-3">
+          <label for="sugerencias" class="form-label">Sugerencias generales</label>
+          <textarea
+            id="sugerencias"
+            class="form-control"
+            formControlName="sugerencias"
+            rows="3"
+          ></textarea>
+        </div>
+ 
+ <div class="mb-3 form-check">
+  <input
+    type="checkbox"
+    class="form-check-input"
+    id="confirmacion"
+    formControlName="confirmacion"
+  />
+  <label class="form-check-label" for="confirmacion">
+    Confirmo que completé y leí todo correctamente.
+  </label>
+  <div *ngIf="encuestaForm.get('confirmacion')?.invalid && encuestaForm.get('confirmacion')?.touched" class="text-danger">
+    Debés confirmar antes de enviar.
+  </div>
+</div>
+    <!-- Botón de envío -->
+    <button type="submit" class="btn btn-primary" [disabled]="encuestaForm.invalid">Enviar</button>
+  </form>
+</div>
