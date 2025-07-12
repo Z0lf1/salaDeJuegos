@@ -27,6 +27,19 @@ export class PuntajesService {
 
     return data || [];
   }
+async obtenerTodosLosPuntajes(): Promise<any[]> {
+  const { data, error } = await this.supabase
+    .from('Puntajes')
+    .select('*')
+    .order('puntaje', { ascending: false });
+
+  if (error) {
+    console.error('Error al obtener todos los puntajes:', error);
+    throw error;
+  }
+
+  return data || [];
+}
 
   // Guardar un nuevo puntajes
   async guardarPuntaje(usuario: string, puntaje: string, juego: string): Promise<void> {

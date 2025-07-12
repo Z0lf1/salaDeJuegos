@@ -9,6 +9,7 @@ import { RegistroComponent } from './components/registro/registro.component'; //
 import { AuthGuard } from './guards/auth.guard'; // Asegúrate de que AuthGuard esté importado y configurado
 import { EncuestaComponent } from './components/encuesta/encuesta.component';
 import { EncuestasComponent } from './components/encuestas/encuestas.component';
+import { PuntajeComponent } from './components/puntaje/puntaje.component'; // Asegúrate de importar el componente Puntajes
 import { AdminGuard } from './guards/admin.guard';
 export const routes: Routes = [
   { path: '', redirectTo: 'home', pathMatch: 'full' },
@@ -23,7 +24,8 @@ export const routes: Routes = [
       { path: 'juegos', loadChildren: () => import('./juegos/juegos.module').then(m => m.JuegosModule) }, 
       { path: 'chat', component: ChatComponent , canActivate: [AuthGuard] }, // Asegúrate de que AuthGuard esté importado y configurado,
       { path: 'encuesta', component: EncuestaComponent , canActivate: [AuthGuard] }, // Asegúrate de que AuthGuard esté importado y configurado
-      { path: 'encuestas', component: EncuestasComponent , canActivate: [AdminGuard] } // Asegúrate de que AuthGuard esté importado y configurado
+      { path: 'encuestas', component: EncuestasComponent , canActivate: [AdminGuard] }, // Asegúrate de que AuthGuard esté importado y configurado
+      { path: 'puntaje', component: PuntajeComponent , canActivate: [AuthGuard] } // Asegúrate de que AuthGuard esté importado y configurado
 
    
     ]

@@ -1,6 +1,6 @@
 import { Component } from '@angular/core';
 import { CommonModule } from '@angular/common'; // Importa CommonModule
-
+import { PuntajesService } from '../../services/puntajes.service';
 @Component({
   selector: 'app-mayor-menor',
   templateUrl: './mayor-menor.component.html',
@@ -15,12 +15,15 @@ export class MayorMenorComponent {
   mensaje: string = '';
   vidas: number = 5;
   correctos: number = 0;
-
-  constructor() {
+  usuario: string = ''; 
+  
+  constructor(private puntajesService: PuntajesService) {
     this.actual = this.getRandomArbitrary();
     this.next = this.getRandomArbitrary();
   }
-
+   ngOnInit(): void {
+    this.usuario = localStorage.getItem('userEmail') || 'Invitado';
+  }
   calcular() {
     if (this.actual > this.next) {
       this.actualMax = true;
@@ -40,6 +43,7 @@ export class MayorMenorComponent {
       this.mensaje = 'Incorrecto';
       this.vidas--;
     }
+    this.verificarFinJuego();
   }
 
   maximo() {
@@ -52,9 +56,26 @@ export class MayorMenorComponent {
       this.mensaje = 'Incorrecto';
       this.vidas--;
     }
+    this.verificarFinJuego();
   }
-
+async guardarPuntaje() {
+    try {
+      const puntosString = this.correctos.toString();
+      await this.puntajesService.guardarPuntaje(this.usuario, puntosString, 'Mayor Menor');
+      console.log(' Puntaje guardado exitosamente');
+    } catch (error) {
+      console.error(' Error al guardar el puntaje:', error);
+    }
+  }
   getRandomArbitrary() {
     return Math.floor(Math.random() * 12 + 1);
   }
+
+  verificarFinJuego() {
+    if (this.vidas <= 0) {
+      this.mensaje = `🎮 Fin del juego. Puntos obtenidos: ${this.correctos}`;
+      this.guardarPuntaje();
+    }
+  }
+  
 }

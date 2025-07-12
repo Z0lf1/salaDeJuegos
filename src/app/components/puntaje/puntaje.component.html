@@ -1,0 +1,29 @@
+<div class="container my-5">
+  <h2 class="text-center mb-4">Puntajes Generales</h2>
+
+  <div *ngIf="cargando" class="text-center">Cargando puntajes...</div>
+  <div *ngIf="error" class="alert alert-danger">{{ error }}</div>
+
+  <table *ngIf="!cargando && puntajes.length" class="table table-striped">
+    <thead>
+      <tr>
+        <th>Jugador</th>
+        <th>Juego</th>
+        <th>Puntaje</th>
+        <th>Fecha</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr *ngFor="let p of puntajes">
+        <td>{{ p.usuario}}</td>
+        <td>{{ p.juego }}</td>
+        <td>{{ p.puntaje }}</td>
+        <td>{{ p.created_at | date:'short' }}</td>
+      </tr>
+    </tbody>
+  </table>
+
+  <div *ngIf="!cargando && !puntajes.length" class="text-center">
+    No hay puntajes cargados aún.
+  </div>
+</div>

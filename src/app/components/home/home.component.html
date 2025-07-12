@@ -23,6 +23,9 @@
         <li class="nav-item" *ngIf="userEmail">
           <a class="nav-link" routerLink="/home/encuesta">Encuesta</a>
         </li>
+        <li class="nav-item" *ngIf="userEmail">
+          <a class="nav-link" routerLink="/home/puntaje">Puntajes</a>
+        </li>  
         <li class="nav-item" *ngIf="!userEmail">
           <a class="nav-link" routerLink="/home/login">Login</a>
         </li>

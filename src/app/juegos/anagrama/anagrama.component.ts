@@ -31,13 +31,6 @@ export class AnagramaComponent implements OnInit {
     this.nuevaRonda();
   }
 
-  async cargarPuntajes() {
-    try {
-      this.puntajes = await this.puntajesService.obtenerPuntajesPorJuego('Anagrama');
-    } catch (error) {
-      console.error('Error al cargar puntajes:', error);
-    }
-  }
 
   nuevaRonda() {
     this.feedback = '';
@@ -86,6 +79,13 @@ export class AnagramaComponent implements OnInit {
       }
       this.esperando = false;
     }, 1200);
+  }
+  async cargarPuntajes() {
+    try {
+      this.puntajes = await this.puntajesService.obtenerPuntajesPorJuego('Anagrama');
+    } catch (error) {
+      console.error('Error al cargar puntajes:', error);
+    }
   }
 
   async guardarPuntaje() {
