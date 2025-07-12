@@ -34,7 +34,8 @@ constructor(
 ) {}
 
   ngOnInit() {
-    this.pokeapi.getPrimeros151().subscribe(data => {
+      this.usuario = localStorage.getItem('userEmail') || 'Invitado';
+      this.pokeapi.getPrimeros151().subscribe(data => {
       this.pokemones = data.results;
       this.generarPregunta();
     });
