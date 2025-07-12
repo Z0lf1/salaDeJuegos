@@ -41,3 +41,9 @@
         </button>
     </div>
 </div>
+<div class="puntaje-container text-center my-3">
+  <h4>Puntaje: {{ puntaje }} <span [ngClass]="{
+    'text-success': ultimoCambio.startsWith('+'),
+    'text-danger': ultimoCambio.startsWith('-')
+  }">{{ ultimoCambio }}</span></h4>
+</div>
