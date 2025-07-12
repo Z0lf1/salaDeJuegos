@@ -3,7 +3,7 @@ import { PokeapiService } from '../../services/pokeapi.service';
 import { CommonModule } from '@angular/common';
 import { FormsModule } from '@angular/forms';
 import { HttpClientModule } from '@angular/common/http'; // Importa HttpClientModule
-
+import { PuntajesService } from '../../services/puntajes.service';
 @Component({
   selector: 'app-preguntados',
   templateUrl: './preguntados.component.html',
@@ -21,12 +21,17 @@ export class PreguntadosComponent implements OnInit {
   vidas: number = 3;
   feedback: string = '';
   esperando: boolean = false;
+  usuario: string = '';
 
-  private pokeapi: PokeapiService;
 
-  constructor(private injector: Injector) {
+  /*constructor(private injector: Injector) {
+
     this.pokeapi = this.injector.get(PokeapiService); // Obtén el servicio dinámicamente
-  }
+  }*/
+constructor(
+  private pokeapi: PokeapiService,
+  private puntajesService: PuntajesService
+) {}
 
   ngOnInit() {
     this.pokeapi.getPrimeros151().subscribe(data => {
@@ -74,8 +79,19 @@ export class PreguntadosComponent implements OnInit {
     setTimeout(() => {
       if (this.vidas > 0) {
         this.generarPregunta();
+      }else{
+        this.guardarPuntaje();
       }
       this.esperando = false;
     }, 1200);
   }
+  async guardarPuntaje() {
+    try {
+      const puntosString = this.puntos.toString();
+      await this.puntajesService.guardarPuntaje(this.usuario, puntosString, 'Preguntados');
+      console.log('Puntaje guardado exitosamente');
+    } catch (error) {
+      console.error('Error al guardar el puntaje:', error);
+    }
+  } 
 }
