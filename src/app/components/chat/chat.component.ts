@@ -1,4 +1,4 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, OnInit, OnDestroy,ViewChild,ElementRef } from '@angular/core';
 import { ChatService, Mensaje } from '../../services/chat.service';
 import { CommonModule } from '@angular/common'; // Importa CommonModule para *ngIf
 import { FormsModule } from '@angular/forms'; // Importa FormsModule para [(ngModel)]
@@ -9,11 +9,13 @@ import { FormsModule } from '@angular/forms'; // Importa FormsModule para [(ngMo
   standalone: true, // Indica que es un componente independiente
   imports: [CommonModule, FormsModule] // Agrega CommonModule y FormsModule aquí
 })
-export class ChatComponent implements OnInit {
+export class ChatComponent implements OnInit, OnDestroy {
   mensajes: Mensaje[] = [];
   usuario: string = '';
   mensaje: string = '';
   error: string = '';
+
+  @ViewChild('chatScroll') chatScroll!: ElementRef; // Referencia al contenedor del chat
 
   constructor(private chatService: ChatService) {}
 
@@ -23,6 +25,7 @@ export class ChatComponent implements OnInit {
     await this.cargarMensajes();
     this.chatService.suscribirseMensajes((nuevoMensaje: Mensaje) => {
       this.mensajes.push(nuevoMensaje);
+      setTimeout(() => this.scrollToBottom(), 0); // Scroll automático
     });
   }
   ngOnDestroy() {
@@ -31,6 +34,8 @@ export class ChatComponent implements OnInit {
   async cargarMensajes() {
     try {
       this.mensajes = await this.chatService.getMensajes();
+      setTimeout(() => this.scrollToBottom(), 0); // Scroll automático
+
     } catch (err: any) {
       this.error = 'Error al cargar mensajes';
     }
@@ -44,6 +49,14 @@ export class ChatComponent implements OnInit {
       await this.cargarMensajes();
     } catch (err: any) {
       this.error = 'Error al enviar mensaje';
+    }
+  }
+   private scrollToBottom() {
+    try {
+      const el = this.chatScroll.nativeElement;
+      el.scrollTop = el.scrollHeight;
+    } catch (e) {
+      console.error('No se pudo hacer scroll:', e);
     }
   }
 }
