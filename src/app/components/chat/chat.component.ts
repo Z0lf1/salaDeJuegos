@@ -20,7 +20,6 @@ export class ChatComponent implements OnInit, OnDestroy {
   constructor(private chatService: ChatService) {}
 
   async ngOnInit() {
-    // Toma el usuario logueado del localStorage
     this.usuario = localStorage.getItem('userEmail') || '';
     await this.cargarMensajes();
     this.chatService.suscribirseMensajes((nuevoMensaje: Mensaje) => {
@@ -46,7 +45,6 @@ export class ChatComponent implements OnInit, OnDestroy {
     try {
       await this.chatService.enviarMensaje(this.usuario, this.mensaje);
       this.mensaje = '';
-      await this.cargarMensajes();
     } catch (err: any) {
       this.error = 'Error al enviar mensaje';
     }

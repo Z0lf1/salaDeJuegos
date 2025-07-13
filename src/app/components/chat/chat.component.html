@@ -3,7 +3,7 @@
       <div class="card-header bg-dark text-white">
         Chat
       </div>
-      <div class="card-body" style="height: 300px; overflow-y: auto;"#chatScroll>
+      <div class="card-body" #chatScroll style="height: 300px; overflow-y: auto;">
         <div *ngFor="let m of mensajes">
           <span class="fw-bold">{{ m.usuario }}:</span>
           <span>{{ m.mensaje }}</span>
