@@ -21,8 +21,13 @@ export class ChatComponent implements OnInit {
     // Toma el usuario logueado del localStorage
     this.usuario = localStorage.getItem('userEmail') || '';
     await this.cargarMensajes();
+    this.chatService.suscribirseMensajes((nuevoMensaje: Mensaje) => {
+      this.mensajes.push(nuevoMensaje);
+    });
   }
-
+  ngOnDestroy() {
+    this.chatService.desconectar();
+  }
   async cargarMensajes() {
     try {
       this.mensajes = await this.chatService.getMensajes();

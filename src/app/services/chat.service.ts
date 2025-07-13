@@ -1,7 +1,7 @@
 import { Injectable } from '@angular/core';
 import { createClient, SupabaseClient } from '@supabase/supabase-js';
 import { environment } from '../../environments/environment';
-
+import { RealtimeChannel } from '@supabase/supabase-js';
 export interface Mensaje {
   id?: number;
   created_at?: string;
@@ -14,12 +14,10 @@ export interface Mensaje {
 })
 export class ChatService {
   private supabase: SupabaseClient;
+  private canalMensajes: RealtimeChannel | null = null;
 
   constructor() {
-    this.supabase = createClient(
-      environment.supabaseUrl,
-      environment.supabaseAnonKey
-    );
+    this.supabase = createClient(environment.supabaseUrl,environment.supabaseAnonKey);
   }
 
   // Obtener todos los mensajes
@@ -39,4 +37,22 @@ export class ChatService {
       .insert([{ usuario, mensaje }]);
     if (error) throw error;
   }
+
+  suscribirseMensajes(callback: (nuevoMensaje: Mensaje) => void) {
+    this.canalMensajes = this.supabase.channel('mensajes-channel')
+      .on(
+        'postgres_changes',
+        { event: 'INSERT', schema: 'public', table: 'chat' },
+        (payload) => {
+          callback(payload.new as Mensaje);
+        }
+      )
+      .subscribe();
+  }
+    desconectar() {
+    if (this.canalMensajes) {
+      this.supabase.removeChannel(this.canalMensajes);
+    }
+  }
+
 }
