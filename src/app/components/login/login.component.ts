@@ -7,6 +7,7 @@ import { AuthService } from '../../services/auth.service'; // Asegúrate de que 
 @Component({
   selector: 'app-login',
   templateUrl: './login.component.html',
+  styleUrls: ['./login.component.css'],
   standalone: true, // Indica que es un componente independiente
   imports: [FormsModule, CommonModule] // Agrega FormsModule y CommonModule aquí
 })

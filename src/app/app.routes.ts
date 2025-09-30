@@ -11,6 +11,7 @@ import { EncuestaComponent } from './components/encuesta/encuesta.component';
 import { EncuestasComponent } from './components/encuestas/encuestas.component';
 import { PuntajeComponent } from './components/puntaje/puntaje.component'; // Asegúrate de importar el componente Puntajes
 import { AdminGuard } from './guards/admin.guard';
+
 export const routes: Routes = [
   { path: '', redirectTo: 'home', pathMatch: 'full' },
   {

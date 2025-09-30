@@ -7,6 +7,7 @@ import { CommonModule } from '@angular/common'; // Importa CommonModule
 @Component({
   selector: 'app-home',
   templateUrl: './home.component.html',
+  styleUrls: ['./home.component.css'],
   standalone: true, // Indica que es un componente independiente
   imports: [RouterModule, CommonModule] // Agrega RouterModule y CommonModule aquí
 })

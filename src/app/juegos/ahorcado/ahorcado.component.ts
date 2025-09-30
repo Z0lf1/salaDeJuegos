@@ -15,7 +15,7 @@ export class AhorcadoComponent {
     'DESARROLLO', 'COMPUTADORA',
     'TELEFONO', 'LIBRO', 'MUSICA',
     'CINE', 'VIDEOJUEGO', 'DEPORTES',
-    'FUTBOL', 'BALONCESTO', 'NATACION'
+    'FUTBOL', 'BALONCESTO', 'NATACION','CANCHA'
   ];
     numero:number = Math.floor(Math.random() * (this.palabras.length - 0));
     palabra:string = this.palabras[this.numero]

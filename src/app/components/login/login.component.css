@@ -1,0 +1,27 @@
+
+
+
+:host {
+  display: block;
+  height: 100%;
+  width: 100%;
+}
+
+.login-background {
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100vw;
+  height: 100vh;
+  z-index: -1;
+  background: url("../../../../public/assets/bebidas.jpg") no-repeat center center;
+  background-size: cover;
+}
+
+/* Centrado del contenido sobre el fondo */
+:host ::ng-deep .container-fluid.d-flex.justify-content-center {
+  min-height: 100vh;
+  align-items: center;
+  display: flex;
+  justify-content: center;
+}
