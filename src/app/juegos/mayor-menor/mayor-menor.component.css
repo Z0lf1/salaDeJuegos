@@ -10,3 +10,13 @@
 .suit {
     margin-bottom: 0.5rem;
 }
+h2.text-center {
+    color: #ffffff; /* Blanco brillante */
+    font-family: 'Press Start 2P', cursive; /* Tipografía arcade */
+    text-shadow: 
+        2px 2px 4px #000000, 
+        0 0 10px #ff6ec7, 
+        0 0 20px #ff6ec7; /* Glow rosa neón */
+    font-weight: 700;
+    letter-spacing: 2px;
+}

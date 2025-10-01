@@ -117,6 +117,7 @@
         </div>
     </div>
 </div>
+
 <div class="text-center my-3">
     <span class="h5" [ngClass]="{'text-success': mensaje === '¡Correcto!', 'text-danger': mensaje === 'Incorrecto'}">
         {{ mensaje }}
@@ -132,7 +133,29 @@
         ¡Juego terminado!
     </div>
 </div>
+
 <div class="text-center">
     <button class="btn btn-dark" (click)="minimo()" [disabled]="vidas === 0">minimo</button>
     <button class="btn btn-dark" (click)="maximo()" [disabled]="vidas === 0">maximo</button>
+</div>
+
+<!-- ✅ Tabla de puntajes del juego Mayor Menor -->
+<div class="mt-5">
+    <h3>Puntajes del juego</h3>
+    <table class="table table-striped">
+        <thead>
+            <tr>
+                <th>Usuario</th>
+                <th>Puntaje</th>
+                <th>Fecha</th>
+            </tr>
+        </thead>
+        <tbody>
+            <tr *ngFor="let puntaje of puntajes">
+                <td>{{ puntaje.usuario }}</td>
+                <td>{{ puntaje.puntaje }}</td>
+                <td>{{ puntaje.created_at | date:'short' }}</td>
+            </tr>
+        </tbody>
+    </table>
 </div>

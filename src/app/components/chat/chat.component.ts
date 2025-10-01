@@ -6,6 +6,7 @@ import { FormsModule } from '@angular/forms'; // Importa FormsModule para [(ngMo
 @Component({
   selector: 'app-chat',
   templateUrl: './chat.component.html',
+styleUrls: ['./chat.component.css'],
   standalone: true, // Indica que es un componente independiente
   imports: [CommonModule, FormsModule] // Agrega CommonModule y FormsModule aquí
 })
@@ -57,4 +58,11 @@ export class ChatComponent implements OnInit, OnDestroy {
       console.error('No se pudo hacer scroll:', e);
     }
   }
+  // agrega esto dentro de export class ChatComponent { ... }
+usuarioEsPropio(autor?: string): boolean {
+  const usuarioActual = (this.usuario ?? '').toString().trim().toLowerCase();
+  if (!usuarioActual) return false; // si no hay usuario logueado no marcamos como propio
+  return ((autor ?? '').toString().trim().toLowerCase()) === usuarioActual;
+}
+
 }

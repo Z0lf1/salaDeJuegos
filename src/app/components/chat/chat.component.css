@@ -1,0 +1,109 @@
+.chat-body {
+  height: 300px;
+  overflow-y: auto;
+  padding: 10px;
+  background: #ece5dd; /* fondo típico WhatsApp */
+  display: flex;
+  flex-direction: column;
+}
+
+.mensaje-propio, .mensaje-ajeno {
+  display: flex;
+  margin-bottom: 10px;
+}
+
+.mensaje-propio {
+  justify-content: flex-end;
+}
+
+.mensaje-ajeno {
+  justify-content: flex-start;
+}
+
+.mensaje {
+  max-width: 70%;
+  padding: 8px 12px;
+  border-radius: 15px;
+  word-wrap: break-word;
+  position: relative;
+}
+
+/* Mensajes propios */
+.mensaje-propio .mensaje {
+  background-color: #dcf8c6;
+  text-align: right;
+  border-bottom-right-radius: 0;
+}
+
+.mensaje-propio .mensaje::after {
+  content: "";
+  position: absolute;
+  right: -10px;
+  bottom: 0;
+  width: 0;
+  height: 0;
+  border-left: 10px solid #dcf8c6;
+  border-top: 10px solid transparent;
+  border-bottom: 0 solid transparent;
+}
+
+/* Mensajes ajenos */
+.mensaje-ajeno .mensaje {
+  background-color: #ffffff;
+  text-align: left;
+  border-bottom-left-radius: 0;
+}
+
+.mensaje-ajeno .mensaje::after {
+  content: "";
+  position: absolute;.chat-body {
+  max-height: 400px; /* para que sea scrolleable */
+  overflow-y: auto;
+  padding: 10px;
+  display: flex;
+  flex-direction: column;
+}
+
+.mensaje-propio {
+  display: flex;
+  justify-content: flex-end; /* alinea a la derecha */
+  margin: 5px 0;
+}
+
+.mensaje-ajeno {
+  display: flex;
+  justify-content: flex-start; /* alinea a la izquierda */
+  margin: 5px 0;
+}
+
+.mensaje {
+  max-width: 70%;
+  padding: 8px 12px;
+  border-radius: 12px;
+  box-shadow: 0 1px 3px rgba(0,0,0,0.2);
+}
+
+.mensaje-propio .mensaje {
+  background-color: #d1e7dd; /* verde claro tipo WhatsApp */
+  text-align: right;
+}
+
+.mensaje-ajeno .mensaje {
+  background-color: #f8f9fa; /* gris claro */
+  text-align: left;
+}
+
+  left: -10px;
+  bottom: 0;
+  width: 0;
+  height: 0;
+  border-right: 10px solid #ffffff;
+  border-top: 10px solid transparent;
+  border-bottom: 0 solid transparent;
+}
+
+.hora {
+  font-size: 0.7rem;
+  margin-top: 4px;
+  display: block;
+}

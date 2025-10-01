@@ -1,3 +1,4 @@
+
 <div class="row">
     <div class="col text-center">
         <h3>Intentos <small> {{ intentos }} / 6</small></h3>
@@ -41,9 +42,31 @@
         </button>
     </div>
 </div>
+
 <div class="puntaje-container text-center my-3">
   <h4>Puntaje: {{ puntaje }} <span [ngClass]="{
     'text-success': ultimoCambio.startsWith('+'),
     'text-danger': ultimoCambio.startsWith('-')
   }">{{ ultimoCambio }}</span></h4>
+</div>
+
+<!-- NUEVO BLOQUE: Puntajes del juego -->
+<div class="mt-4">
+  <h3>Puntajes del juego</h3>
+  <table class="table table-striped">
+    <thead>
+      <tr>
+        <th>Usuario</th>
+        <th>Puntaje</th>
+        <th>Fecha</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr *ngFor="let puntaje of puntajes">
+        <td>{{ puntaje.usuario }}</td>
+        <td>{{ puntaje.puntaje }}</td>
+        <td>{{ puntaje.created_at | date:'short' }}</td>
+      </tr>
+    </tbody>
+  </table>
 </div>

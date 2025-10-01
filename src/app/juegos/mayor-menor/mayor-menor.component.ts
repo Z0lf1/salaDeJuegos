@@ -1,14 +1,15 @@
-import { Component } from '@angular/core';
-import { CommonModule } from '@angular/common'; // Importa CommonModule
+import { Component, OnInit } from '@angular/core';
+import { CommonModule } from '@angular/common';
 import { PuntajesService } from '../../services/puntajes.service';
+
 @Component({
   selector: 'app-mayor-menor',
   templateUrl: './mayor-menor.component.html',
   styleUrls: ['./mayor-menor.component.css'],
-  standalone: true, // Indica que es un componente independiente
-  imports: [CommonModule] // Agrega CommonModule aquí
+  standalone: true,
+  imports: [CommonModule]
 })
-export class MayorMenorComponent {
+export class MayorMenorComponent implements OnInit {
   actual: number;
   next: number;
   actualMax: boolean = false;
@@ -16,14 +17,29 @@ export class MayorMenorComponent {
   vidas: number = 5;
   correctos: number = 0;
   usuario: string = ''; 
-  
+
+  // ✅ Nueva variable para tabla de puntajes de este juego
+  puntajes: any[] = [];
+
   constructor(private puntajesService: PuntajesService) {
     this.actual = this.getRandomArbitrary();
     this.next = this.getRandomArbitrary();
   }
-   ngOnInit(): void {
+
+  ngOnInit(): void {
     this.usuario = localStorage.getItem('userEmail') || 'Invitado';
+    this.cargarPuntajes(); // ✅ Cargar tabla de puntajes al iniciar
   }
+
+  // ✅ Nuevo método para traer puntajes solo de "Mayor Menor"
+  async cargarPuntajes() {
+    try {
+      this.puntajes = await this.puntajesService.obtenerPuntajesPorJuego('Mayor Menor');
+    } catch (error) {
+      console.error('Error al cargar puntajes:', error);
+    }
+  }
+
   calcular() {
     if (this.actual > this.next) {
       this.actualMax = true;
@@ -37,7 +53,7 @@ export class MayorMenorComponent {
     this.calcular();
     if (this.actualMax) {
       this.mensaje = '¡Correcto!';
-      this.correctos++; // Suma correctos
+      this.correctos++;
       this.actualMax = false;
     } else {
       this.mensaje = 'Incorrecto';
@@ -50,7 +66,7 @@ export class MayorMenorComponent {
     this.calcular();
     if (!this.actualMax) {
       this.mensaje = '¡Correcto!';
-      this.correctos++; // Suma correctos
+      this.correctos++;
       this.actualMax = false;
     } else {
       this.mensaje = 'Incorrecto';
@@ -58,15 +74,18 @@ export class MayorMenorComponent {
     }
     this.verificarFinJuego();
   }
-async guardarPuntaje() {
+
+  async guardarPuntaje() {
     try {
       const puntosString = this.correctos.toString();
       await this.puntajesService.guardarPuntaje(this.usuario, puntosString, 'Mayor Menor');
-      console.log(' Puntaje guardado exitosamente');
+      console.log('Puntaje guardado exitosamente');
+      await this.cargarPuntajes(); // ✅ Actualiza la tabla tras guardar puntaje
     } catch (error) {
-      console.error(' Error al guardar el puntaje:', error);
+      console.error('Error al guardar el puntaje:', error);
     }
   }
+
   getRandomArbitrary() {
     return Math.floor(Math.random() * 12 + 1);
   }
@@ -77,5 +96,4 @@ async guardarPuntaje() {
       this.guardarPuntaje();
     }
   }
-  
 }

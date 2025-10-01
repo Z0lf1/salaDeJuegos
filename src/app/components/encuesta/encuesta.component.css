@@ -1,0 +1,26 @@
+:host ::ng-deep .encuesta-card {
+  background: rgba(0, 0, 0, 0.5);  /* Fondo traslúcido más opaco */
+  backdrop-filter: blur(8px);       /* Difumina el fondo */
+  border-radius: 16px;              /* Bordes redondeados */
+  box-shadow: 0 8px 20px rgba(0,0,0,0.3); /* Sombra */
+  color: #ffffff;                   /* Texto blanco */
+  font-family: 'Fredoka One', 'Comic Sans MS', cursive, sans-serif; /* Tipografía divertida */
+  padding: 30px;
+}
+
+:host ::ng-deep .encuesta-card input,
+:host ::ng-deep .encuesta-card textarea,
+:host ::ng-deep .encuesta-card select {
+  background: rgba(255, 255, 255, 0.9);  /* Inputs legibles */
+  color: #000;
+  border-radius: 8px;
+  border: 1px solid #ccc;
+}
+
+:host ::ng-deep .encuesta-card button {
+  font-family: 'Fredoka One', cursive;
+}
+
+:host ::ng-deep .encuesta-card .form-check-label {
+  color: #fff;
+}

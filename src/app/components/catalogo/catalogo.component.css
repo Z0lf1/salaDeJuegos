@@ -2,38 +2,81 @@
 .card {
     border-radius: 1rem;
     overflow: hidden;
-    transition: transform 0.2s ease, box-shadow 0.2s ease;
-  }
-  
-  .card:hover {
-    transform: scale(1.03);
-    box-shadow: 0 8px 16px rgba(0, 0, 0, 0.15);
-  }
-  
-  /* Imagen del juego */
-  .game-pic {
-    max-width: 100%;
-    max-height: 150px;
-    object-fit: contain;
-  }
-  
-  /* Asegura que haya padding dentro del cuerpo de la tarjeta */
-  .card-body {
+    transition: transform 0.3s ease, box-shadow 0.3s ease;
+    background: rgba(255, 255, 255, 0.9); /* fondo traslúcido */
     padding: 1rem;
-  }
-  
-  /* Opcional: cursor y borde cuando es clickeable */
-  .card-clickable {
+}
+
+.card:hover {
+    transform: scale(1.05);
+    box-shadow: 0 12px 30px rgba(0, 0, 0, 0.35);
+}
+
+/* Imagen del juego */
+.game-pic {
+    width: 120px;
+    height: 120px;
+    object-fit: contain;
+    margin-bottom: 0.75rem;
+}
+
+/* Cuerpo de la tarjeta */
+.card-body {
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    padding: 1rem;
+}
+
+/* Cursor y borde cuando es clickeable */
+.card-clickable {
     cursor: pointer;
     border: 1px solid #dee2e6;
-  }
-  
-  /* Responsive (opcional): mantener alineación centrada */
-  .card-title {
-    font-size: 1.1rem;
-    font-weight: 600;
-    margin-top: auto;
-    margin-bottom: 0;
-    text-align: center; 
-  }
-  
+}
+
+/* Título del juego */
+.card-title {
+    font-size: 1.25rem;
+    font-weight: 700;
+    text-align: center;
+    color: #333;
+}
+
+/* Cards tipo arcade / glow */
+.card-clickable {
+    background: linear-gradient(135deg, #ff6ec7, #ffc66e);
+    color: #fff;
+    border: none;
+    box-shadow: 0 4px 15px rgba(255, 110, 199, 0.4);
+    transition: transform 0.3s, box-shadow 0.3s;
+}
+
+.card-clickable:hover {
+    transform: scale(1.08);
+    box-shadow: 0 12px 25px rgba(255, 110, 199, 0.7);
+}
+
+/* Responsive: 2 por fila en md+ */
+@media (min-width: 768px) {
+    .col-md-6 {
+        flex: 0 0 50%;
+        max-width: 50%;
+    }
+}
+
+/* Para centrar las cards en pantallas pequeñas */
+.row.justify-content-center {
+    justify-content: center;
+}
+
+h2.text-center {
+    color: #ffffff; /* Blanco brillante */
+    font-family: 'Press Start 2P', cursive; /* Tipografía arcade */
+    text-shadow: 
+        2px 2px 4px #000000, 
+        0 0 10px #ff6ec7, 
+        0 0 20px #ff6ec7; /* Glow rosa neón */
+    font-weight: 700;
+    letter-spacing: 2px;
+}

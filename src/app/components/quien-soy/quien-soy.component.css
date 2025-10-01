@@ -1,0 +1,33 @@
+/* Estilo para la tarjeta "Quién soy" */
+.card {
+  background: rgba(0, 0, 0, 0.4);      /* Fondo negro semi-transparente */
+  backdrop-filter: blur(8px);          /* Efecto blur detrás */
+  border-radius: 16px;                 /* Bordes redondeados */
+  box-shadow: 0 8px 20px rgba(0,0,0,0.3); /* Sombra suave */
+  padding: 30px;                       /* Espaciado interno */
+  color: #ffffff;                      /* Texto blanco */
+  font-family: 'Fredoka One', 'Comic Sans MS', cursive, sans-serif; /* Tipografía divertida */
+  transition: transform 0.3s ease, box-shadow 0.3s ease; /* Animación al hover */
+}
+
+/* Efecto al pasar el mouse sobre la tarjeta */
+.card:hover {
+  transform: translateY(-5px);
+  box-shadow: 0 12px 28px rgba(0,0,0,0.4);
+}
+
+/* Imagen dentro de la tarjeta */
+.card img {
+  border-radius: 12px;
+  border: 2px solid rgba(255,255,255,0.3);
+}
+
+/* Encabezados y párrafos dentro de la tarjeta */
+.card h3, .card p {
+  margin-bottom: 12px;
+}
+
+/* Texto destacado */
+.card strong {
+  color: #ffd700; /* Dorado divertido */
+}
