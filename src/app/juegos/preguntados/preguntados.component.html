@@ -1,31 +1,33 @@
+
 <div class="text-center mt-4">
+  <div class="card-juego-pokemon">
     <h3 class="mb-4">¿Quién es este Pokémon?</h3>
-    <div class="mb-2">
-      <span class="me-3">Puntos: <b>{{ puntos }}</b></span>
-      <span>Vidas:
-        <span *ngFor="let v of [].constructor(vidas)">❤️</span>
-      </span>
-    </div>
-    <div *ngIf="loading" class="mb-3">Cargando imagen...</div>
-    <img *ngIf="imagenUrl" [src]="imagenUrl" alt="pokemon" class="mb-3"
-       style="width: 220px; height: 220px;">
-    <div class="d-grid gap-2 col-6 mx-auto">
-      <button
-        *ngFor="let poke of opciones"
-        class="btn btn-dark mb-2 text-capitalize"
-        [disabled]="esperando || vidas === 0"
-        (click)="responder(poke)">
-        {{ poke.name }}
-      </button>
-    </div>
-    <div class="mt-3 h5" [ngClass]="{'text-success': feedback==='¡Correcto!', 'text-danger': feedback==='Incorrecto'}">
-      {{ feedback }}
-    </div>
-    <div *ngIf="vidas === 0" class="text-danger mt-3 h4">
-      ¡Juego terminado!
-    </div>
-  </div>
-  <div class="mt-5" *ngIf="puntajes.length > 0">
+      <div class="mb-2">
+        <span class="me-3">Puntos: <b>{{ puntos }}</b></span>
+        <span>Vidas:
+          <span *ngFor="let v of [].constructor(vidas)">❤️</span>
+        </span>
+      </div>
+      <div *ngIf="loading" class="mb-3">Cargando imagen...</div>
+      <img *ngIf="imagenUrl" [src]="imagenUrl" alt="pokemon" class="mb-3"
+         style="width: 220px; height: 220px;">
+      <div class="d-grid gap-2 col-6 mx-auto">
+        <button
+          *ngFor="let poke of opciones"
+          class="btn btn-dark mb-2 text-capitalize"
+          [disabled]="esperando || vidas === 0"
+          (click)="responder(poke)">
+          {{ poke.name }}
+        </button>
+      </div>
+      <div class="mt-3 h5" [ngClass]="{'text-success': feedback==='¡Correcto!', 'text-danger': feedback==='Incorrecto'}">
+        {{ feedback }}
+      </div>
+      <div *ngIf="vidas === 0" class="text-danger mt-3 h4">
+        ¡Juego terminado!
+      </div>
+      
+       <div class="mt-5" *ngIf="puntajes.length > 0">
   <h3>Puntajes del juego</h3>
   <table class="table table-striped">
     <thead>
@@ -44,3 +46,6 @@
     </tbody>
   </table>
 </div>
+  </div>  
+ 
+  </div>

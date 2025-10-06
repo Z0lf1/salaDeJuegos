@@ -1,4 +1,4 @@
-
+<!-- 
 <div class="row">
     <div class="col text-center">
         <h3>Intentos <small> {{ intentos }} / 6</small></h3>
@@ -50,7 +50,6 @@
   }">{{ ultimoCambio }}</span></h4>
 </div>
 
-<!-- NUEVO BLOQUE: Puntajes del juego -->
 <div class="mt-4">
   <h3>Puntajes del juego</h3>
   <table class="table table-striped">
@@ -69,4 +68,80 @@
       </tr>
     </tbody>
   </table>
+</div> -->
+<div class="container mt-4">
+  <div class="card-juego">
+    <div class="row">
+      <div class="col text-center">
+        <h3>Intentos <small> {{ intentos }} / 6</small></h3>
+      </div>
+    </div>
+
+    <div class="row">
+      <div class="col text-center">
+        <h1>{{palabraOculta}}</h1>
+      </div>
+    </div>
+
+    <div *ngIf="gano" class="row">
+      <div class="col text-center">
+        <h1> ¡FELICIDADES HAS GANADO! </h1>
+        <h4> 🙂 </h4>
+      </div>
+    </div>
+
+    <div *ngIf="perdio" class="row">
+      <div class="col text-center">
+        <h1> HAS PERDIDO 😦 </h1>
+        <h4> palabra: {{ palabra }} </h4>
+      </div>
+    </div>
+
+    <div class="row">
+      <div class="col text-center">
+        <img [src]="imagenes[intentos]" alt="Ahorcado" style="max-width: 250px; margin-bottom: 20px;">
+      </div>
+    </div>
+
+    <div class="row" *ngIf="!gano && !perdio">
+      <div class="col text-center">
+        <button
+          (click)="comprobar(letra)"
+          *ngFor="let letra of letras"
+          class="btn btn-dark"
+          [disabled]="letrasUsadas.has(letra)">
+          {{ letra }}
+        </button>
+      </div>
+    </div>
+
+    <div class="puntaje-container text-center my-3">
+      <h4>Puntaje: {{ puntaje }} <span [ngClass]="{
+        'text-success': ultimoCambio.startsWith('+'),
+        'text-danger': ultimoCambio.startsWith('-')
+      }">{{ ultimoCambio }}</span></h4>
+    </div>
+
+    <!-- NUEVO BLOQUE: Puntajes del juego -->
+    <div class="mt-4">
+      <h3>Puntajes del juego</h3>
+      <table class="table table-striped">
+        <thead>
+          <tr>
+            <th>Usuario</th>
+            <th>Puntaje</th>
+            <th>Fecha</th>
+          </tr>
+        </thead>
+        <tbody>
+          <tr *ngFor="let puntaje of puntajes">
+            <td>{{ puntaje.usuario }}</td>
+            <td>{{ puntaje.puntaje }}</td>
+            <td>{{ puntaje.created_at | date:'short' }}</td>
+          </tr>
+        </tbody>
+      </table>
+    </div>
+
+  </div>
 </div>

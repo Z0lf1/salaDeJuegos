@@ -1,10 +1,84 @@
-h2.text-center {
-    color: #ffffff; /* Blanco brillante */
-    font-family: 'Press Start 2P', cursive; /* Tipografía arcade */
-    text-shadow: 
-        2px 2px 4px #000000, 
-        0 0 10px #ff6ec7, 
-        0 0 20px #ff6ec7; /* Glow rosa neón */
-    font-weight: 700;
-    letter-spacing: 2px;
+/* Importar la fuente */
+@import url('https://fonts.googleapis.com/css2?family=Fredoka+One&display=swap');
+
+/* Card translúcida para el juego Pokémon */
+.card-juego-pokemon {
+  background: rgba(0, 0, 0, 0.6);        /* Fondo semi-transparente */
+  backdrop-filter: blur(8px);            /* Blur detrás */
+  border-radius: 16px;
+  box-shadow: 0 8px 20px rgba(0,0,0,0.3);
+  padding: 30px;
+  color: #ffffff;
+  font-family: 'Fredoka One', 'Comic Sans MS', cursive;
+  transition: transform 0.3s ease, box-shadow 0.3s ease;
+}
+
+.card-juego-pokemon:hover {
+  transform: translateY(-5px);
+  box-shadow: 0 12px 28px rgba(0,0,0,0.4);
+}
+
+/* Títulos */
+.card-juego-pokemon h3, 
+.card-juego-pokemon h4, 
+.card-juego-pokemon h5,
+.card-juego-pokemon .h5 {
+  font-family: 'Fredoka One', cursive;
+  color: #ffffff;
+  text-shadow: 1px 1px 2px #000000;
+  margin-bottom: 12px;
+}
+
+/* Puntos y vidas */
+.card-juego-pokemon span {
+  font-family: 'Fredoka One', cursive;
+  font-size: 1.2em;
+  margin-right: 6px;
+}
+
+/* Imagen del Pokémon */
+.card-juego-pokemon img {
+  border-radius: 12px;
+  border: 2px solid rgba(255,255,255,0.3);
+  max-width: 220px;
+  max-height: 220px;
+  display: block;
+  margin: 0 auto 20px auto;
+}
+
+/* Botones de opciones */
+.card-juego-pokemon .btn-dark {
+  font-family: 'Fredoka One', cursive;
+  margin-bottom: 8px;
+  min-width: 120px;
+  font-weight: bold;
+  transition: transform 0.2s ease, box-shadow 0.2s ease;
+}
+
+.card-juego-pokemon .btn-dark:hover:not(:disabled) {
+  transform: translateY(-2px);
+  box-shadow: 0 4px 10px rgba(0,0,0,0.5);
+}
+
+/* Feedback correcto/incorrecto */
+.card-juego-pokemon .text-success {
+  color: #00ff00 !important;
+}
+
+.card-juego-pokemon .text-danger {
+  color: #ff4444 !important;
+}
+
+/* Tabla de puntajes */
+.card-juego-pokemon table {
+  background: rgba(255, 255, 255, 0.1);
+  color: #fff;
+  font-family: 'Fredoka One', cursive;
+  margin-top: 12px;
+}
+
+.card-juego-pokemon table th, 
+.card-juego-pokemon table td {
+  border-color: rgba(255,255,255,0.2);
+  padding: 8px;
 }

@@ -1,4 +1,4 @@
-.carta {
+/* .carta {
     border-radius: 1rem;
     box-shadow: 0 4px 8px rgba(0,0,0,0.2);
     font-family: 'Segoe UI', Arial, sans-serif;
@@ -11,12 +11,77 @@
     margin-bottom: 0.5rem;
 }
 h2.text-center {
-    color: #ffffff; /* Blanco brillante */
-    font-family: 'Press Start 2P', cursive; /* Tipografía arcade */
+    color: #ffffff; 
+    font-family: 'Press Start 2P', cursive; 
     text-shadow: 
         2px 2px 4px #000000, 
         0 0 10px #ff6ec7, 
-        0 0 20px #ff6ec7; /* Glow rosa neón */
+        0 0 20px #ff6ec7; 
     font-weight: 700;
     letter-spacing: 2px;
+} */
+/* Importar la fuente */
+@import url('https://fonts.googleapis.com/css2?family=Fredoka+One&display=swap');
+
+/* Card translúcida para el juego Mayor-Menor */
+.card-juego-mayor-menor {
+  background: rgba(0, 0, 0, 0.6);
+  backdrop-filter: blur(8px);
+  border-radius: 16px;
+  box-shadow: 0 8px 20px rgba(0,0,0,0.3);
+  padding: 30px;
+  color: #ffffff;
+  font-family: 'Fredoka One', 'Comic Sans MS', cursive;
+  transition: transform 0.3s ease, box-shadow 0.3s ease;
+}
+
+.card-juego-mayor-menor:hover {
+  transform: translateY(-5px);
+  box-shadow: 0 12px 28px rgba(0,0,0,0.4);
+}
+
+/* Mensajes y contadores dentro del juego */
+.card-juego-mayor-menor h3,
+.card-juego-mayor-menor h4,
+.card-juego-mayor-menor .h5,
+.card-juego-mayor-menor span {
+  font-family: 'Fredoka One', cursive;
+  text-shadow: 1px 1px 2px #000;
+}
+
+/* Botones dentro del juego */
+.card-juego-mayor-menor .btn-dark {
+  font-family: 'Fredoka One', cursive;
+  margin: 5px;
+  min-width: 80px;
+  font-weight: bold;
+  transition: transform 0.2s ease, box-shadow 0.2s ease;
+}
+
+.card-juego-mayor-menor .btn-dark:hover:not(:disabled) {
+  transform: translateY(-2px);
+  box-shadow: 0 4px 10px rgba(0,0,0,0.5);
+}
+
+/* Tabla de puntajes */
+.card-juego-mayor-menor table {
+  background: rgba(255, 255, 255, 0.1);
+  color: #fff;
+  font-family: 'Fredoka One', cursive;
+  margin-top: 12px;
+}
+
+.card-juego-mayor-menor table th,
+.card-juego-mayor-menor table td {
+  border-color: rgba(255,255,255,0.2);
+  padding: 8px;
+}
+
+/* Texto destacado de puntajes */
+.card-juego-mayor-menor .text-success {
+  color: #00ff00 !important;
+}
+
+.card-juego-mayor-menor .text-danger {
+  color: #ff4444 !important;
 }
