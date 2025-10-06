@@ -10,6 +10,8 @@ import { PuntajesService } from '../../services/puntajes.service';
 })
 export class PuntajeComponent implements OnInit {
   puntajes: any[] = [];
+  puntajesPorJuego: Record<string, any[]> = {};
+  juegos: string[] = ['Mayor Menor', 'Ahorcado', 'Anagrama', 'Preguntados'];
   cargando = true;
   error: string | null = null;
 
@@ -18,6 +20,12 @@ export class PuntajeComponent implements OnInit {
   async ngOnInit(): Promise<void> {
     try {
       this.puntajes = await this.puntajesService.obtenerTodosLosPuntajes();
+      this.juegos.forEach(juego => {
+        this.puntajesPorJuego[juego] = this.puntajes
+          .filter(p => p.juego === juego)
+          .sort((a, b) => b.puntos - a.puntos)
+          .slice(0, 5);
+      });
     } catch (err) {
       this.error = 'No se pudieron cargar los puntajes.';
     } finally {

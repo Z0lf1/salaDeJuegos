@@ -1,29 +1,48 @@
-<div class="container my-5">
-  <h2 class="text-center mb-4">Puntajes Generales</h2>
+<div class="container my-5" style="font-family: 'Poppins', sans-serif;">
+  <div class="card shadow-lg border-0 p-4"
+       style="background-color: rgba(0,0,0,0.4); backdrop-filter: blur(8px); border-radius: 1rem;">
+    
+    <h2 class="text-center mb-4 text-white">Puntajes Generales</h2>
 
-  <div *ngIf="cargando" class="text-center">Cargando puntajes...</div>
-  <div *ngIf="error" class="alert alert-danger">{{ error }}</div>
+    <div *ngIf="cargando" class="text-center text-white">Cargando puntajes...</div>
+    <div *ngIf="error" class="alert alert-danger">{{ error }}</div>
 
-  <table *ngIf="!cargando && puntajes.length" class="table table-striped">
-    <thead>
-      <tr>
-        <th>Jugador</th>
-        <th>Juego</th>
-        <th>Puntaje</th>
-        <th>Fecha</th>
-      </tr>
-    </thead>
-    <tbody>
-      <tr *ngFor="let p of puntajes">
-        <td>{{ p.usuario}}</td>
-        <td>{{ p.juego }}</td>
-        <td>{{ p.puntaje }}</td>
-        <td>{{ p.created_at | date:'short' }}</td>
-      </tr>
-    </tbody>
-  </table>
+    <div class="row g-4" *ngIf="!cargando">
+      <div class="col-12 col-md-6" *ngFor="let juego of juegos">
+        <div class="card shadow-sm border-0 mb-4"
+             style="background-color: rgba(0,0,0,0.3); backdrop-filter: blur(6px); border-radius: 1rem;">
+          <!-- Cabecera de cada juego -->
+          <div class="card-header text-center text-white fw-bold"
+               style="background-color: rgba(0,0,0,0.5); border-radius: 1rem 1rem 0 0;">
+            {{ juego }}
+          </div>
 
-  <div *ngIf="!cargando && !puntajes.length" class="text-center">
-    No hay puntajes cargados aún.
+          <!-- Tabla de puntajes -->
+          <div class="card-body p-3">
+            <table class="table table-sm table-hover mb-0 text-white">
+              <thead style="background-color: rgba(255,255,255,0.1);">
+                <tr>
+                  <th>Jugador</th>
+                  <th>Puntaje</th>
+                  <th>Fecha</th>
+                </tr>
+              </thead>
+              <tbody>
+                <tr *ngFor="let p of puntajesPorJuego[juego]?.slice(0,10)">
+                  <td>{{ p.usuario }}</td>
+                  <td>{{ p.puntaje }}</td>
+                  <td>{{ p.created_at | date:'short' }}</td>
+                </tr>
+              </tbody>
+            </table>
+
+            <div *ngIf="!puntajesPorJuego[juego]?.length" class="text-center my-2 text-white-50">
+              No hay puntajes cargados aún.
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+
   </div>
 </div>
