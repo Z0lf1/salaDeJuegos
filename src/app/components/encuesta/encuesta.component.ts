@@ -28,29 +28,56 @@ export class EncuestaComponent implements OnInit {
     });
   }
 
-  async onSubmit(): Promise<void> {
-    if (this.encuestaForm.valid) {
-      const formData = {
-        nombre_apellido: this.encuestaForm.value.nombreApellido,
-        edad: this.encuestaForm.value.edad,
-        telefono: this.encuestaForm.value.telefono,
-        juego_favorito: this.encuestaForm.value.juegoFavorito,
-        juego_faltante: this.encuestaForm.value.juegoFaltante,
-        sugerencias: this.encuestaForm.value.sugerencias,
-      };
+  // async onSubmit(): Promise<void> {
+  //   if (this.encuestaForm.valid) {
+  //     const formData = {
+  //       nombre_apellido: this.encuestaForm.value.nombreApellido,
+  //       edad: this.encuestaForm.value.edad,
+  //       telefono: this.encuestaForm.value.telefono,
+  //       juego_favorito: this.encuestaForm.value.juegoFavorito,
+  //       juego_faltante: this.encuestaForm.value.juegoFaltante,
+  //       sugerencias: this.encuestaForm.value.sugerencias,
+  //     };
   
-      try {
-        await this.encuestaService.insertEncuesta(formData);
-        alert('Encuesta enviada con éxito');
-        this.encuestaForm.reset();
-      } catch (error) {
-        console.error(' Error al enviar la encuesta:', error);
-        alert('Error al enviar la encuesta');
-      }
-    } else {
-      this.encuestaForm.markAllAsTouched();
-      console.error('Formulario inválido');
+  //     try {
+  //       await this.encuestaService.insertEncuesta(formData);
+  //       alert('Encuesta enviada con éxito');
+  //       this.encuestaForm.reset();
+  //     } catch (error) {
+  //       console.error(' Error al enviar la encuesta:', error);
+  //       alert('Error al enviar la encuesta');
+  //     }
+  //   } else {
+  //     this.encuestaForm.markAllAsTouched();
+  //     console.error('Formulario inválido');
+  //   }
+  // }
+  async onSubmit(): Promise<void> {
+  if (this.encuestaForm.valid) {
+    const formData = {
+      nombre_apellido: this.encuestaForm.value.nombreApellido,
+      edad: this.encuestaForm.value.edad,
+      telefono: this.encuestaForm.value.telefono,
+      juego_favorito: this.encuestaForm.value.juegoFavorito,
+      juego_faltante: this.encuestaForm.value.juegoFaltante,
+      sugerencias: this.encuestaForm.value.sugerencias,
+    };
+
+    try {
+      await this.encuestaService.insertEncuesta(formData);
+      alert('Encuesta enviada con éxito');
+      // Reset con checkbox en false
+      this.encuestaForm.reset({
+        confirmacion: false
+      });
+    } catch (error) {
+      console.error(' Error al enviar la encuesta:', error);
+      alert('Error al enviar la encuesta');
     }
+  } else {
+    this.encuestaForm.markAllAsTouched();
+    console.error('Formulario inválido');
   }
-    
+}
+  
 }

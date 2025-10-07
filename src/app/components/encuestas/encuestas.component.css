@@ -1,0 +1,25 @@
+/* Card translúcida para encuestas, igual que los juegos */
+.card-juego {
+  background: rgba(0, 0, 0, 0.6);        /* Fondo negro semi-transparente */
+  backdrop-filter: blur(8px);            /* Difumina el fondo */
+  border-radius: 16px;                   /* Bordes redondeados */
+  box-shadow: 0 8px 20px rgba(0,0,0,0.3);/* Sombra suave */
+  padding: 30px;                         
+  color: #ffffff;                        
+  font-family: 'Fredoka One', 'Comic Sans MS', cursive, sans-serif;
+  transition: transform 0.3s ease, box-shadow 0.3s ease;
+}
+
+/* Hover sobre la card */
+.card-juego:hover {
+  transform: translateY(-5px);
+  box-shadow: 0 12px 28px rgba(0,0,0,0.4);
+}
+
+/* Títulos dentro de la card */
+.card-juego h2, .card-juego h3 {
+  margin-bottom: 12px;
+  font-family: 'Fredoka One', cursive;
+  color: #ffffff;
+  text-shadow: 2px 2px 4px #000000; /* Sombra ligera para resaltar */
+}
