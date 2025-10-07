@@ -27,7 +27,7 @@ export class CatalogoComponent {
       imagen: 'assets/preguntados.png'
     },
     {
-      nombre: 'Anagrama',
+      nombre: 'Palabra misteriosa',
       ruta: '/home/juegos/anagrama',
       imagen: 'assets/anagrama.png'
     }

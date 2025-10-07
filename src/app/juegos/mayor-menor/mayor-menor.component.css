@@ -42,8 +42,8 @@
 /* Botones dentro del juego */
 .card-juego-mayor-menor .btn-dark {
   font-family: 'Fredoka One', cursive;
-  margin: 5px;
-  min-width: 80px;
+  margin-bottom: 8px;
+  min-width: 120px;
   font-weight: bold;
   transition: transform 0.2s ease, box-shadow 0.2s ease;
 }

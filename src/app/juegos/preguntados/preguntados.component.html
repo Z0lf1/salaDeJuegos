@@ -23,9 +23,12 @@
       <div class="mt-3 h5" [ngClass]="{'text-success': feedback==='¡Correcto!', 'text-danger': feedback==='Incorrecto'}">
         {{ feedback }}
       </div>
-      <div *ngIf="vidas === 0" class="text-danger mt-3 h4">
-        ¡Juego terminado!
-      </div>
+<div *ngIf="vidas === 0" class="text-danger mt-3 h4">
+  ¡Juego terminado!
+  <div class="mt-3">
+    <button class="btn btn-dark" (click)="nuevaPartida()">Nueva partida</button>
+  </div>
+</div>
       
        <div class="mt-5" *ngIf="puntajes.length > 0">
   <h3>Puntajes del juego</h3>
