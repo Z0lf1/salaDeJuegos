@@ -1,0 +1,60 @@
+@import url('https://fonts.googleapis.com/css2?family=Fredoka+One&display=swap');
+
+.register-card {
+  background: rgba(0, 0, 0, 0.6);
+  backdrop-filter: blur(8px);
+  border-radius: 16px;
+  box-shadow: 0 8px 20px rgba(0,0,0,0.3);
+  color: #ffffff;
+  font-family: 'Fredoka One', 'Comic Sans MS', cursive, sans-serif;
+  transition: transform 0.3s ease, box-shadow 0.3s ease;
+}
+
+.register-card:hover {
+  transform: translateY(-5px);
+  box-shadow: 0 12px 28px rgba(0,0,0,0.4);
+}
+
+/* Inputs */
+.register-card input {
+  background: rgba(255, 255, 255, 0.9);
+  color: #000;
+  border-radius: 8px;
+  border: 1px solid #ccc;
+  font-family: 'Fredoka One', cursive;
+  transition: box-shadow 0.2s ease;
+}
+
+.register-card input:focus {
+  box-shadow: 0 0 6px rgba(255, 215, 0, 0.7);
+  outline: none;
+}
+
+/* Labels */
+.register-card .form-label {
+  color: #fff;
+  font-family: 'Fredoka One', cursive;
+}
+
+/* Botón principal */
+.register-card .btn-dark {
+  font-family: 'Fredoka One', cursive;
+  font-weight: bold;
+  min-width: 100px;
+  transition: transform 0.2s ease, box-shadow 0.2s ease;
+}
+
+.register-card .btn-dark:hover:not(:disabled) {
+  transform: translateY(-2px);
+  box-shadow: 0 4px 10px rgba(0,0,0,0.5);
+}
+
+/* Enlace de redirección */
+.register-card a {
+  text-decoration: none;
+  font-weight: bold;
+}
+
+.register-card a:hover {
+  text-decoration: underline;
+}

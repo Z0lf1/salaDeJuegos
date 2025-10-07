@@ -1,66 +1,8 @@
-<!-- <div class="login-background">
-<div class="container mt-5 d-flex justify-content-center">
-    <div class="card p-4 shadow" style="width: 100%; max-width: 400px;">
-      <h4 class="text-center mb-4">Iniciar sesión</h4>
-  
-      
-      <div class="mb-3 d-flex flex-wrap gap-2 justify-content-center">
-        <button type="button" class="btn btn-outline-secondary btn-sm"
-          (click)="autofill('jugador1@test.com', '123456')">User 1</button>
-        <button type="button" class="btn btn-outline-secondary btn-sm"
-          (click)="autofill('pepito@test.com', 'pepito23')">User 2</button>
-        <button type="button" class="btn btn-outline-secondary btn-sm"
-          (click)="autofill('pedritorico@hoho.com', '123456')">User 3</button>
-        <button type="button" class="btn btn-outline-secondary btn-sm"
-          (click)="autofill('admin1@admin.com', '123456')">Admin</button>
-      </div>
-  
-      <form #loginForm="ngForm" (ngSubmit)="onSubmit()">
-        <div class="mb-3">
-          <label for="email" class="form-label">Correo electrónico</label>
-          <input
-            type="email"
-            id="email"
-            class="form-control"
-            name="email"
-            required
-            [(ngModel)]="email"
-            placeholder="ejemplo@correo.com"
-          />
-        </div>
-  
-        <div class="mb-3">
-          <label for="password" class="form-label">Contraseña</label>
-          <input
-            type="password"
-            id="password"
-            class="form-control"
-            name="password"
-            required
-            [(ngModel)]="password"
-            placeholder="••••••••"
-          />
-        </div>
-  
-        <button type="submit" class="btn btn-dark w-100" [disabled]="!loginForm.valid">
-          Ingresar
-        </button>
-      </form>
-      <div *ngIf="error" class="text-danger mt-2 text-center">{{ error }}</div>
-      <p class="mt-3 text-center">
-        ¿No tienes cuenta? <a href="/home/registro" routerLink="/home/registro">Regístrate aquí</a>
-      </p>
-    </div>
-  </div>
-  </div> -->
-
-  
-<div class="login-background"></div>
+<!-- <div class="login-background"></div>
 <div class="container-fluid d-flex justify-content-center" style="position: relative; z-index: 1;">
   <div class="card p-4 shadow custom-card" style="width: 100%; max-width: 400px;">
     <h4 class="text-center mb-4">Iniciar sesión</h4>
 
-    <!-- Botones de autocompletar usuarios -->
     <div class="mb-3 d-flex flex-wrap gap-2 justify-content-center">
       <button type="button" class="btn btn-outline-secondary btn-sm"
         (click)="autofill('jugador1@test.com', '123456')">User 1</button>
@@ -106,6 +48,59 @@
     <div *ngIf="error" class="text-danger mt-2 text-center">{{ error }}</div>
     <p class="mt-3 text-center">
       ¿No tienes cuenta? <a href="/home/registro" routerLink="/home/registro">Regístrate aquí</a>
+    </p>
+  </div>
+</div> -->
+<div class="login-background"></div>
+
+<div class="container-fluid d-flex justify-content-center align-items-center min-vh-100" style="position: relative; z-index: 1;">
+  <div class="card p-4 shadow login-card" style="width: 100%; max-width: 420px;">
+    <h3 class="text-center mb-4">Iniciar sesión</h3>
+
+    <!-- Botones de autocompletar usuarios -->
+    <div class="mb-3 d-flex flex-wrap gap-2 justify-content-center">
+      <button type="button" class="btn btn-outline-light btn-sm" (click)="autofill('jugador1@test.com', '123456')">User 1</button>
+      <button type="button" class="btn btn-outline-light btn-sm" (click)="autofill('pepito@test.com', 'pepito23')">User 2</button>
+      <button type="button" class="btn btn-outline-light btn-sm" (click)="autofill('pedritorico@hoho.com', '123456')">User 3</button>
+      <button type="button" class="btn btn-outline-warning btn-sm" (click)="autofill('admin1@admin.com', '123456')">Admin</button>
+    </div>
+
+    <form #loginForm="ngForm" (ngSubmit)="onSubmit()">
+      <div class="mb-3">
+        <label for="email" class="form-label">Correo electrónico</label>
+        <input
+          type="email"
+          id="email"
+          class="form-control"
+          name="email"
+          required
+          [(ngModel)]="email"
+          placeholder="ejemplo@correo.com"
+        />
+      </div>
+
+      <div class="mb-3">
+        <label for="password" class="form-label">Contraseña</label>
+        <input
+          type="password"
+          id="password"
+          class="form-control"
+          name="password"
+          required
+          [(ngModel)]="password"
+          placeholder="••••••••"
+        />
+      </div>
+
+      <button type="submit" class="btn btn-dark w-100" [disabled]="!loginForm.valid">
+        Ingresar
+      </button>
+    </form>
+
+    <div *ngIf="error" class="text-danger mt-2 text-center">{{ error }}</div>
+
+    <p class="mt-3 text-center">
+      ¿No tienes cuenta? <a href="/home/registro" routerLink="/home/registro" class="text-warning">Regístrate aquí</a>
     </p>
   </div>
 </div>

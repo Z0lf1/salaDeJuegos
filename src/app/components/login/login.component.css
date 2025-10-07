@@ -14,7 +14,7 @@
   width: 100vw;
   height: 100vh;
   z-index: -1;
-  background: url("../../../../public/assets/bebidas.jpg") no-repeat center center;
+  background: url("../../../../public/assets/fondoSala.jpg") no-repeat center center;
   background-size: cover;
 }
 
@@ -24,4 +24,78 @@
   align-items: center;
   display: flex;
   justify-content: center;
+}
+
+@import url('https://fonts.googleapis.com/css2?family=Fredoka+One&display=swap');
+
+.login-card {
+  background: rgba(0, 0, 0, 0.6);        /* Fondo translúcido oscuro */
+  backdrop-filter: blur(8px);            /* Efecto de desenfoque */
+  border-radius: 16px;                   /* Bordes suaves */
+  box-shadow: 0 8px 20px rgba(0,0,0,0.3);/* Sombra */
+  color: #ffffff;                        /* Texto claro */
+  font-family: 'Fredoka One', 'Comic Sans MS', cursive, sans-serif;
+  transition: transform 0.3s ease, box-shadow 0.3s ease;
+}
+
+.login-card:hover {
+  transform: translateY(-5px);
+  box-shadow: 0 12px 28px rgba(0,0,0,0.4);
+}
+
+/* Inputs */
+.login-card input {
+  background: rgba(255, 255, 255, 0.9);
+  color: #000;
+  border-radius: 8px;
+  border: 1px solid #ccc;
+  font-family: 'Fredoka One', cursive;
+  transition: box-shadow 0.2s ease;
+}
+
+.login-card input:focus {
+  box-shadow: 0 0 6px rgba(255, 215, 0, 0.7);
+  outline: none;
+}
+
+/* Labels */
+.login-card .form-label {
+  color: #fff;
+  font-family: 'Fredoka One', cursive;
+}
+
+/* Botones */
+.login-card .btn-dark {
+  font-family: 'Fredoka One', cursive;
+  font-weight: bold;
+  min-width: 100px;
+  transition: transform 0.2s ease, box-shadow 0.2s ease;
+}
+
+.login-card .btn-dark:hover:not(:disabled) {
+  transform: translateY(-2px);
+  box-shadow: 0 4px 10px rgba(0,0,0,0.5);
+}
+
+/* Botones de autocompletar */
+.login-card .btn-outline-light,
+.login-card .btn-outline-warning {
+  border-radius: 8px;
+  font-family: 'Fredoka One', cursive;
+  transition: background-color 0.2s ease, transform 0.2s ease;
+}
+
+.login-card .btn-outline-light:hover,
+.login-card .btn-outline-warning:hover {
+  transform: translateY(-2px);
+}
+
+/* Enlace de registro */
+.login-card a {
+  text-decoration: none;
+  font-weight: bold;
+}
+
+.login-card a:hover {
+  text-decoration: underline;
 }

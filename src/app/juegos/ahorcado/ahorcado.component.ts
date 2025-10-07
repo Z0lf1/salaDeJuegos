@@ -18,8 +18,7 @@ export class AhorcadoComponent implements OnInit {
     'CINE', 'VIDEOJUEGO', 'DEPORTES',
     'FUTBOL', 'BALONCESTO', 'NATACION','CANCHA'
   ];
-  numero: number = Math.floor(Math.random() * this.palabras.length);
-  palabra: string = this.palabras[this.numero];
+  palabra: string = '';
   palabraOculta: string = '';
   puntaje: number = 0;
   intentos = 0;
@@ -42,20 +41,16 @@ export class AhorcadoComponent implements OnInit {
     'assets/ahorcado6.png'
   ];
   letrasUsadas: Set<string> = new Set();
-
-  // ✅ Nueva variable para tabla de puntajes de este juego
   puntajes: any[] = [];
 
-  constructor(private puntajesService: PuntajesService) {
-    this.palabraOculta = '_ '.repeat(this.palabra.length);
-  }
+  constructor(private puntajesService: PuntajesService) {}
 
   ngOnInit(): void {
     this.usuario = localStorage.getItem('userEmail') || 'Invitado';
-    this.cargarPuntajes(); // ✅ Cargar tabla al inicio
+    this.nuevaPalabra(); // iniciar primera palabra
+    this.cargarPuntajes();
   }
 
-  // ✅ Nuevo método para traer puntajes solo de este juego
   async cargarPuntajes() {
     try {
       this.puntajes = await this.puntajesService.obtenerPuntajesPorJuego('Ahorcado');
@@ -64,10 +59,29 @@ export class AhorcadoComponent implements OnInit {
     }
   }
 
+  nuevaPalabra() {
+    const numero = Math.floor(Math.random() * this.palabras.length);
+    this.palabra = this.palabras[numero];
+    this.palabraOculta = '_ '.repeat(this.palabra.length);
+    this.intentos = 0;
+    this.letrasUsadas.clear();
+    this.gano = false;
+    this.perdio = false;
+    this.ultimoCambio = '';
+  }
+
+  nuevaPartida() {
+    this.puntaje = 0;
+    this.nuevaPalabra();
+  }
+
+  siguientePalabra() {
+    this.nuevaPalabra(); 
+  }
+
   comprobar(letra: string) {
-    if (this.letrasUsadas.has(letra) || this.gano || this.perdio) {
-      return;
-    }
+    if (this.letrasUsadas.has(letra) || this.gano || this.perdio) return;
+
     this.letrasUsadas.add(letra);
     const letraExistente = this.existeLetra(letra);
     const palabraOcultaArr = this.palabraOculta.split(' ');
@@ -94,21 +108,19 @@ export class AhorcadoComponent implements OnInit {
     if (palabraEvaluar === this.palabra) {
       this.gano = true;
       this.puntaje += 50; // Bonus por ganar
-      this.guardarPuntaje();
+      // Ahora esperamos que el usuario toque el botón "Siguiente palabra"
     }
 
     if (this.intentos >= 6) {
       this.perdio = true;
-      this.guardarPuntaje();
+      this.guardarPuntaje(); // guardar solo al perder
     }
   }
 
   existeLetra(letra: string): boolean {
     if (this.palabra.indexOf(letra) >= 0) {
-      console.log('La letra ' + letra + ' existe');
       return true;
     } else {
-      console.log('La letra ' + letra + ' no existe');
       this.intentos++;
       return false;
     }
@@ -118,8 +130,7 @@ export class AhorcadoComponent implements OnInit {
     try {
       const puntosString = this.puntaje.toString();
       await this.puntajesService.guardarPuntaje(this.usuario, puntosString, 'Ahorcado');
-      console.log('Puntaje guardado exitosamente');
-      await this.cargarPuntajes(); // ✅ Actualiza la tabla tras guardar puntaje
+      await this.cargarPuntajes(); 
     } catch (error) {
       console.error('Error al guardar el puntaje:', error);
     }
